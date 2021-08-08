@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="jumbotron my-5">
+            <h1 class="display-1">Admin-Page</h1>
+            <p class="lead">beep boop</p>
+        </div>
+    
+        <div class="d-flex align-items-center justify-content-end">
+            <button class="btn btn-primary" id="topTen">Refresh Top 10</button>
+        </div>
+        <div class="d-flex align-items-center justify-content-end">
+            <button class="btn btn-primary" id="allPlayers">Refresh all</button>
+        </div>
+    
+        <table class="table mt-5">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Score</th>
+                    <th>Computer Score</th>
+                    <th>Win Rate</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboardTableBody"></tbody>
+        </table>
+    </div>
+    
+
+<script src="js/admin.js"></script>
+</body>
+</html>

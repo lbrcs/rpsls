@@ -12,6 +12,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://w.soundcloud.com/player/api.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
         <title>🗿📜✂️🦎🧛 - Rock, Paper, Scissors, Lizard, Spock</title>
     </head>
     <body style="background-color: bisque;">
@@ -55,8 +57,9 @@
             <div class="row my-3">
                 <div class="col-1">
                     <div class="buttons">
-                        <button class="mt-2" id="restart" onclick="location.reload()">Restart</button>
-                        <button class="mt-2" id="reset" onclick="resetAll()">Reset all</button>
+                        <button class="mt-1 btn-secondary" id="restart" onclick="location.reload()">Restart</button>
+                        <button class="mt-1 btn-secondary" id="reset" onclick="resetAll()">Reset scores</button>
+                        <button class="mt-1 btn-secondary" onclick="addToLeaderboard()">Add to LB</button>
                     </div>
                 </div>
                 <div class="col-6 container">
@@ -66,29 +69,62 @@
                 <div class="col-4">
                     <img id="imageTwo" src="img/sheldon_cooper.png" style="width: 42%;">
                 </div>
-                <div class="col-1">
-                    <div class="container" id="popover">
-                        <a href="#" data-toggle="popover" data-placement="left" title="About the Game" data-content="You pick one of the 5 items alternately. Get 10 Points to win the Round. Scissors cut Paper, Paper covers Rock, Rock crushes Lizard, Lizard poisons Spock, Spock smashes Scissors, Scissors decapitate Lizard, Lizard eats Paper, Paper disproves Spock, Spock vaporizes Rock, Rock crushes Scissors. You can play as many Rounds as you like.">Rules</a>
+                <div class="col-1 d-flex flex-colum">
+                    <div class="popovers">
+                        <div>
+                            <a href="#" id="rules" data-toggle="popover" data-placement="left" title="About the Game" data-content="You pick one of the 5 items alternately. Get 10 Points to win the Round. Scissors cut Paper, Paper covers Rock, Rock crushes Lizard, Lizard poisons Spock, Spock smashes Scissors, Scissors decapitate Lizard, Lizard eats Paper, Paper disproves Spock, Spock vaporizes Rock, Rock crushes Scissors. You can play as many Rounds as you like.">Rules</a>
+                        </div>
+                        <div class="text-center text-primary">
+                            <a data-toggle="modal" data-target="#myModal">
+                                <i class="bi bi-music-note-beamed" id="note"></i>
+                            </a>
+                            <div class="modal" id="myModal">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h4 class="modal-title">Epic Battle Music</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="container">
+                                            <iframe id="sc-widget" width="50%" height="100" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/969052594&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/royalty-free-audio-loops" title="Royalty Free Music" target="_blank" style="color: #cccccc; text-decoration: none;">Royalty Free Music</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="choice text-center"><p class="lead my-2">Choose wisely!</p></div>
-            <div class="options col-12 text-center">
-                <button id="rock" class="btn-secondary">🗿 Rock</button>
-                <button id="paper" class="btn-secondary">📜 Paper</button>
-                <button id="scissors" class="btn-secondary">✂️ Scissors</button>
-                <button id="lizard" class="btn-secondary">🦎 Lizard</button>
-                <button id="spock" class="btn-secondary">🧛 Spock</button>
+            <div class="row">
+                <div class="col-2 mt-2">
+                    <a href="leaderboard.html" target="_blank"><button id="leaderboard" class="btn-secondary">Leaderboard</button></a>
+                </div>
+                <div class="options col-10">
+                    <button id="rock" class="btn-secondary">🗿 Rock</button>
+                    <button id="paper" class="btn-secondary">📜 Paper</button>
+                    <button id="scissors" class="btn-secondary">✂️ Scissors</button>
+                    <button id="lizard" class="btn-secondary">🦎 Lizard</button>
+                    <button id="spock" class="btn-secondary">🧛 Spock</button>
+                </div>
             </div>
-            
         </div>
 
         <script src="game.js"></script>
+        <script>
+            $('#myModal').on('shown.bs.modal', function (e) {
+                var iframeElement = document.getElementById('sc-widget');
+                var widget1 = SC.Widget(iframeElement);
+                widget1.setVolume(10);
+            });
+        </script>
     </body>
     <footer class="text-center mt-5" style="color: whitesmoke;">
         <p>(c) Martin E. 2021 | Pictures: hiclipart.com, pixabay.com, tvropes.org, delujo.life</p>
-        <div class="container">
-            <iframe width="50%" height="100" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/969052594&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/royalty-free-audio-loops" title="Royalty Free Music" target="_blank" style="color: #cccccc; text-decoration: none;">Royalty Free Music</a></div>
-        </div>
     </footer>
 </html>

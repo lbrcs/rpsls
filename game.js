@@ -36,6 +36,12 @@ $(document).ready(function(){
     $('[data-toggle="popover"]').popover();   
 });
 
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+      $('.toast').toast('show');
+    });
+});
+
 document.getElementById("submitButton").onclick = passOnName; 
 document.getElementById("rock").onclick= playedRock;
 document.getElementById("paper").onclick= playedPaper;
@@ -181,6 +187,8 @@ function playedSpock() {
 function checkScores() {
     if (playerScore == 10 || computerScore == 10) {
         if(playerScore == 10) {
+            playerScore = playerStartScore;
+            playerScore += 1;
             alert("Finished! You won the game. Click OK to play another round.");
             reset();
             playerRounds = playerStartRounds;
@@ -192,6 +200,8 @@ function checkScores() {
             tRounds.innerHTML = totalRounds;
             totalStartRounds = totalRounds; 
         } else if(computerScore == 10) {
+            computerScore = computerStartScore;
+            computerScore += 1;
             alert("Finished! Sheldon won. Click OK to play another round.");
             reset();
             computerRounds = computerStartRounds;
@@ -242,6 +252,23 @@ function resetAll() {
     tRounds.innerHTML = "1";
 }
 
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = 'http://w.soundcloud.com/player/api.js';
+document.head.appendChild(script);
+//get the id of the player iframe or inject it using chrome
+var widgetIframe = document.getElementById('sc-widget'),
+    fixWidget = SC.Widget(widgetIframe);
+fixWidget.setVolume(1); //% between 1 and 100
 
+async function addToLeaderboard() {
+    var response = await fetch('/players', {
+        method:'post',
+        body: JSON.stringify({username:playerName, score:playerRounds, computerScore:computerRounds, winRate:((playerRounds/(playerRounds+computerRounds)*100).toFixed(2))}),
+        headers: {'content-type': 'application/JSON'}
+    });
+    var responseTwo = await response.json();
+    console.log(response, responseTwo);
+}
 
 

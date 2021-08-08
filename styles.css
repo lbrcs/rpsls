@@ -19,21 +19,42 @@ div.game {
 }
 
 .buttons {
+    font-size: xx-small;
     margin: 0;
     position: absolute;
-    top: 50%;
-    left: 100%;
+    top: 45%;
+    left: 60%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
- 
-#popover {
+
+.popovers {
     margin: 0;
     position: absolute;
-    top: 40%;
-    right: 50%;
+    top: 39%;
+    left: 0%;
+    /*-ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);*/
+}
+ 
+#leaderboard {
+    font-size: xx-small;
+    position: absolute;
+    /*top: 119%;
+    left: 72%;
     -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);*/
+}
+
+ 
+#rules:hover {
+    text-decoration: none;
+    color: black;
+}
+
+#note:hover {
+    color: black;
+    cursor: pointer;
 }
 
 div#newModal {
